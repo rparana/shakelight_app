@@ -1,17 +1,50 @@
-# shakelight_app
+# ShakeLight
 
-A new Flutter project.
+A Flutter utility app that allows users to toggle the device flashlight by shaking the phone.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **Shake to Toggle**: Control your flashlight with a simple shake gesture.
+- **Background Monitoring**: Works even when the app is minimized or the screen is locked.
+- **Adjustable Sensitivity**: Customize the G-force threshold to suit your needs.
+- **Manual Control**: Primary button for direct flashlight toggling.
+- **Material Design 3**: Modern, clean, and adaptive UI.
+- **Native Integration**: Rigorous handling of permissions and hardware states.
 
-A few resources to get you started if this is your first Flutter project:
+## Technical Details
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+- **Framework**: Flutter (Dart)
+- **State Management**: Riverpod
+- **Architecture**: Modular Clean Architecture Lite
+- **Local Storage**: SharedPreferences
+- **Native Plugins**:
+  - `torch_light`: Flashlight control
+  - `sensors_plus`: Accelerometer data
+  - `flutter_background_service`: Persistent background execution
+  - `permission_handler`: System permissions
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Development
+
+### Prerequisites
+
+- Flutter SDK (latest stable)
+- Physical Android or iOS device (Flashlight and Accelerometer do not work reliably on emulators)
+
+### Setup
+
+1.  Clone the repository.
+2.  Run `flutter pub get`.
+3.  Run `flutter run`.
+
+### Testing
+
+Run unit and widget tests:
+```bash
+flutter test
+```
+
+Maintain a minimum test coverage of 95%.
+
+## License
+
+MIT
