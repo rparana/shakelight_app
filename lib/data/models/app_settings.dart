@@ -5,18 +5,12 @@ class AppSettings {
   });
 
   factory AppSettings.defaultSettings() {
-    return const AppSettings(
-      sensitivity: 50.0,
-      isServiceEnabled: false,
-    );
+    return const AppSettings(sensitivity: 50.0, isServiceEnabled: true);
   }
   final double sensitivity;
   final bool isServiceEnabled;
 
-  AppSettings copyWith({
-    double? sensitivity,
-    bool? isServiceEnabled,
-  }) {
+  AppSettings copyWith({double? sensitivity, bool? isServiceEnabled}) {
     return AppSettings(
       sensitivity: sensitivity ?? this.sensitivity,
       isServiceEnabled: isServiceEnabled ?? this.isServiceEnabled,
@@ -24,7 +18,8 @@ class AppSettings {
   }
 
   @override
-  String toString() => 'AppSettings(sensitivity: $sensitivity, isServiceEnabled: $isServiceEnabled)';
+  String toString() =>
+      'AppSettings(sensitivity: $sensitivity, isServiceEnabled: $isServiceEnabled)';
 
   @override
   bool operator ==(Object other) {
