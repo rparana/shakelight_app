@@ -16,6 +16,17 @@
             android:exported="false" 
             tools:replace="android:exported" />
 
+        <service
+            android:name="org.apparence.quick_settings.QuickSettingsService"
+            android:exported="true"
+            android:label="ShakeLight"
+            android:icon="@mipmap/ic_launcher"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

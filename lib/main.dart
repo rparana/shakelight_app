@@ -5,6 +5,7 @@ import 'core/theme.dart';
 import 'presentation/providers/base_providers.dart';
 import 'presentation/screens/home_screen.dart';
 import 'services/background_service.dart';
+import 'services/quick_settings_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,11 +13,17 @@ void main() async {
 
   await BackgroundMonitoringService.initialize();
 
+  final container = ProviderContainer(
+    overrides: [
+      sharedPreferencesProvider.overrideWithValue(prefs),
+    ],
+  );
+
+  QuickSettingsService.setup(container);
+
   runApp(
-    ProviderScope(
-      overrides: [
-        sharedPreferencesProvider.overrideWithValue(prefs),
-      ],
+    UncontrolledProviderScope(
+      container: container,
       child: const ShakeLightApp(),
     ),
   );

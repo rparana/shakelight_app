@@ -57,6 +57,14 @@ class MockPermissionService extends _i1.Mock implements _i2.PermissionService {
           as _i3.Future<bool>);
 
   @override
+  _i3.Future<bool> requestNotificationPermission() =>
+      (super.noSuchMethod(
+            Invocation.method(#requestNotificationPermission, []),
+            returnValue: _i3.Future<bool>.value(false),
+          )
+          as _i3.Future<bool>);
+
+  @override
   _i3.Future<bool> hasAllPermissions() =>
       (super.noSuchMethod(
             Invocation.method(#hasAllPermissions, []),

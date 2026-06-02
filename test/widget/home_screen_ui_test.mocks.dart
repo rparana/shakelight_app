@@ -42,27 +42,27 @@ class MockFlashlightService extends _i1.Mock implements _i2.FlashlightService {
           as _i3.Future<bool>);
 
   @override
-  _i3.Future<void> turnOn() =>
+  _i3.Future<void> turnOn({bool? withHaptic = false}) =>
       (super.noSuchMethod(
-            Invocation.method(#turnOn, []),
+            Invocation.method(#turnOn, [], {#withHaptic: withHaptic}),
             returnValue: _i3.Future<void>.value(),
             returnValueForMissingStub: _i3.Future<void>.value(),
           )
           as _i3.Future<void>);
 
   @override
-  _i3.Future<void> turnOff() =>
+  _i3.Future<void> turnOff({bool? withHaptic = false}) =>
       (super.noSuchMethod(
-            Invocation.method(#turnOff, []),
+            Invocation.method(#turnOff, [], {#withHaptic: withHaptic}),
             returnValue: _i3.Future<void>.value(),
             returnValueForMissingStub: _i3.Future<void>.value(),
           )
           as _i3.Future<void>);
 
   @override
-  _i3.Future<void> toggle(bool? state) =>
+  _i3.Future<void> toggle(bool? state, {bool? withHaptic = false}) =>
       (super.noSuchMethod(
-            Invocation.method(#toggle, [state]),
+            Invocation.method(#toggle, [state], {#withHaptic: withHaptic}),
             returnValue: _i3.Future<void>.value(),
             returnValueForMissingStub: _i3.Future<void>.value(),
           )
@@ -97,6 +97,14 @@ class MockPermissionService extends _i1.Mock implements _i4.PermissionService {
   _i3.Future<bool> requestBackgroundPermission() =>
       (super.noSuchMethod(
             Invocation.method(#requestBackgroundPermission, []),
+            returnValue: _i3.Future<bool>.value(false),
+          )
+          as _i3.Future<bool>);
+
+  @override
+  _i3.Future<bool> requestNotificationPermission() =>
+      (super.noSuchMethod(
+            Invocation.method(#requestNotificationPermission, []),
             returnValue: _i3.Future<bool>.value(false),
           )
           as _i3.Future<bool>);

@@ -1,0 +1,4 @@
+enum ShakeDirection {
+  horizontal,
+  vertical,
+}
