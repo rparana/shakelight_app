@@ -7,10 +7,11 @@ import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:sensors_plus/sensors_plus.dart' as _i6;
+import 'package:shakelight_app/data/models/shake_direction.dart' as _i7;
 import 'package:shakelight_app/services/flashlight_service.dart' as _i2;
 import 'package:shakelight_app/services/permission_service.dart' as _i4;
 import 'package:shakelight_app/services/shake_detection_service.dart' as _i5;
-import 'package:shared_preferences/src/shared_preferences_legacy.dart' as _i7;
+import 'package:shared_preferences/src/shared_preferences_legacy.dart' as _i8;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -44,27 +45,27 @@ class MockFlashlightService extends _i1.Mock implements _i2.FlashlightService {
           as _i3.Future<bool>);
 
   @override
-  _i3.Future<void> turnOn() =>
+  _i3.Future<void> turnOn({bool? withHaptic = false}) =>
       (super.noSuchMethod(
-            Invocation.method(#turnOn, []),
+            Invocation.method(#turnOn, [], {#withHaptic: withHaptic}),
             returnValue: _i3.Future<void>.value(),
             returnValueForMissingStub: _i3.Future<void>.value(),
           )
           as _i3.Future<void>);
 
   @override
-  _i3.Future<void> turnOff() =>
+  _i3.Future<void> turnOff({bool? withHaptic = false}) =>
       (super.noSuchMethod(
-            Invocation.method(#turnOff, []),
+            Invocation.method(#turnOff, [], {#withHaptic: withHaptic}),
             returnValue: _i3.Future<void>.value(),
             returnValueForMissingStub: _i3.Future<void>.value(),
           )
           as _i3.Future<void>);
 
   @override
-  _i3.Future<void> toggle(bool? state) =>
+  _i3.Future<void> toggle(bool? state, {bool? withHaptic = false}) =>
       (super.noSuchMethod(
-            Invocation.method(#toggle, [state]),
+            Invocation.method(#toggle, [state], {#withHaptic: withHaptic}),
             returnValue: _i3.Future<void>.value(),
             returnValueForMissingStub: _i3.Future<void>.value(),
           )
@@ -104,6 +105,14 @@ class MockPermissionService extends _i1.Mock implements _i4.PermissionService {
           as _i3.Future<bool>);
 
   @override
+  _i3.Future<bool> requestNotificationPermission() =>
+      (super.noSuchMethod(
+            Invocation.method(#requestNotificationPermission, []),
+            returnValue: _i3.Future<bool>.value(false),
+          )
+          as _i3.Future<bool>);
+
+  @override
   _i3.Future<bool> hasAllPermissions() =>
       (super.noSuchMethod(
             Invocation.method(#hasAllPermissions, []),
@@ -125,9 +134,14 @@ class MockShakeDetectionService extends _i1.Mock
   _i3.StreamSubscription<_i6.AccelerometerEvent>? listen(
     void Function()? onShake, {
     double? threshold = 12.0,
+    _i7.ShakeDirection? direction = _i7.ShakeDirection.horizontal,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(#listen, [onShake], {#threshold: threshold}),
+            Invocation.method(
+              #listen,
+              [onShake],
+              {#threshold: threshold, #direction: direction},
+            ),
           )
           as _i3.StreamSubscription<_i6.AccelerometerEvent>?);
 }
@@ -135,7 +149,7 @@ class MockShakeDetectionService extends _i1.Mock
 /// A class which mocks [SharedPreferences].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSharedPreferences extends _i1.Mock implements _i7.SharedPreferences {
+class MockSharedPreferences extends _i1.Mock implements _i8.SharedPreferences {
   MockSharedPreferences() {
     _i1.throwOnMissingStub(this);
   }

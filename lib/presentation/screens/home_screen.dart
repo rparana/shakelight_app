@@ -4,7 +4,6 @@ import '../providers/permission_provider.dart';
 import '../providers/flashlight_provider.dart';
 import '../providers/shake_monitoring_provider.dart';
 import '../widgets/status_icon.dart';
-import '../widgets/toggle_button.dart';
 
 import 'settings_screen.dart';
 
@@ -50,11 +49,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            StatusIcon(isActive: flashlightState.isActive),
-            const SizedBox(height: 60),
-            ManualToggleButton(
-              isActive: flashlightState.isActive,
-              onPressed: () => ref.read(flashlightProvider.notifier).toggle(),
+            GestureDetector(
+              onTap: () => ref.read(flashlightProvider.notifier).toggle(),
+              child: StatusIcon(isActive: flashlightState.isActive),
             ),
             const SizedBox(height: 40),
             if (!hasPermissions)

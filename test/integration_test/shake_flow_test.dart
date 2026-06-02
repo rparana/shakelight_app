@@ -8,6 +8,7 @@ import 'package:shakelight_app/presentation/providers/shake_monitoring_provider.
 import 'package:shakelight_app/services/flashlight_service.dart';
 import 'package:shakelight_app/services/permission_service.dart';
 import 'package:shakelight_app/services/shake_detection_service.dart';
+import 'package:shakelight_app/data/models/shake_direction.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
 import 'dart:async';
@@ -26,17 +27,23 @@ void main() {
     
     when(mockPrefs.getDouble(any)).thenReturn(50.0);
     when(mockPrefs.getBool(any)).thenReturn(true);
+    when(mockPrefs.getString(any)).thenReturn(ShakeDirection.horizontal.name);
     
     when(mockPermissionService.hasAllPermissions()).thenAnswer((_) async => true);
     when(mockPermissionService.requestCameraPermission()).thenAnswer((_) async => true);
     when(mockPermissionService.requestMotionPermission()).thenAnswer((_) async => true);
     when(mockPermissionService.requestBackgroundPermission()).thenAnswer((_) async => true);
+    when(mockPermissionService.requestNotificationPermission()).thenAnswer((_) async => true);
     
     when(mockFlashlightService.isFlashlightAvailable()).thenAnswer((_) async => true);
-    when(mockFlashlightService.toggle(any)).thenAnswer((_) async {});
+    when(mockFlashlightService.toggle(any, withHaptic: anyNamed('withHaptic'))).thenAnswer((_) async {});
 
     void Function()? shakeCallback;
-    when(mockShakeService.listen(any, threshold: anyNamed('threshold'))).thenAnswer((invocation) {
+    when(mockShakeService.listen(
+      any, 
+      threshold: anyNamed('threshold'),
+      direction: anyNamed('direction'),
+    )).thenAnswer((invocation) {
       shakeCallback = invocation.positionalArguments[0] as void Function();
       return null;
     });
@@ -63,6 +70,6 @@ void main() {
 
     // Verify state change (On)
     expect(find.byIcon(Icons.flashlight_on), findsOneWidget);
-    verify(mockFlashlightService.toggle(true)).called(1);
+    verify(mockFlashlightService.toggle(true, withHaptic: true)).called(1);
   });
 }

@@ -19,12 +19,14 @@ void main() {
     final mockPrefs = MockSharedPreferences();
     
     when(mockPrefs.getDouble(any)).thenReturn(50.0);
-    when(mockPrefs.getBool(any)).thenReturn(false);
+    when(mockPrefs.getBool(any)).thenReturn(true);
+    when(mockPrefs.getString(any)).thenReturn(null);
 
     when(mockService.hasAllPermissions()).thenAnswer((_) async => false);
     when(mockService.requestCameraPermission()).thenAnswer((_) async => true);
     when(mockService.requestMotionPermission()).thenAnswer((_) async => true);
     when(mockService.requestBackgroundPermission()).thenAnswer((_) async => true);
+    when(mockService.requestNotificationPermission()).thenAnswer((_) async => true);
 
     await tester.pumpWidget(
       ProviderScope(
@@ -38,9 +40,6 @@ void main() {
 
     // Initial frame
     await tester.pump();
-    
-    // Verify that requestAll was called (indirectly via status update if we pumpped enough)
-    // In our implementation, initState calls requestAll which eventually updates state.
     
     await tester.pumpAndSettle();
     

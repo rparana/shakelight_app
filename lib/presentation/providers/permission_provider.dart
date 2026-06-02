@@ -26,7 +26,8 @@ class PermissionNotifier extends Notifier<bool> {
     final camera = await service.requestCameraPermission();
     final sensors = await service.requestMotionPermission();
     final background = await service.requestBackgroundPermission();
-    
-    state = camera && sensors && background;
+    final notifications = await service.requestNotificationPermission();
+
+    state = camera && sensors && background && notifications;
   }
 }

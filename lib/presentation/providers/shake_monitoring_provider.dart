@@ -11,7 +11,7 @@ final shakeDetectionServiceProvider = Provider<ShakeDetectionService>((ref) {
 
 final shakeMonitoringProvider = Provider<ShakeMonitoringNotifier>((ref) {
   final notifier = ShakeMonitoringNotifier(ref);
-  
+
   // Auto-start/stop based on settings and permissions
   ref.listen(settingsProvider, (previous, next) {
     if (next.isServiceEnabled) {
@@ -39,20 +39,24 @@ class ShakeMonitoringNotifier {
 
   void start() {
     if (_subscription != null) stop();
-    
+
     final service = _ref.read(shakeDetectionServiceProvider);
     final hasPermissions = _ref.read(hasPermissionsProvider);
     final settings = _ref.read(settingsProvider);
-    
+
     if (!hasPermissions) return;
     if (!settings.isServiceEnabled) return;
 
     // Map 0-100 sensitivity to 25.0-10.0 G-force threshold
     final double threshold = 25.0 - (settings.sensitivity / 100.0 * 15.0);
 
-    _subscription = service.listen(() {
-      _ref.read(flashlightProvider.notifier).toggle();
-    }, threshold: threshold);
+    _subscription = service.listen(
+      () {
+        _ref.read(flashlightProvider.notifier).toggle();
+      },
+      threshold: threshold,
+      direction: settings.shakeDirection,
+    );
   }
 
   void stop() {

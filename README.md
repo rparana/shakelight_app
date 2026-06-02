@@ -5,11 +5,14 @@ A Flutter utility app that allows users to toggle the device flashlight by shaki
 ## Features
 
 - **Shake to Toggle**: Control your flashlight with a simple shake gesture.
-- **Background Monitoring**: Works even when the app is minimized or the screen is locked.
+- **Advanced Shake Detection**: Requires 2 consecutive shakes to prevent accidental triggers.
+- **Directional Control**: Choose between Horizontal or Vertical shake detection.
+- **Background Monitoring**: Works even when the app is minimized or the screen is locked. Enabled by default.
+- **Quick Settings Tile**: Toggle the background service directly from your Android notification bar.
+- **Haptic Feedback**: Tactile confirmation when the flashlight toggles.
 - **Adjustable Sensitivity**: Customize the G-force threshold to suit your needs.
-- **Manual Control**: Primary button for direct flashlight toggling.
+- **Clean UI**: Tappable status icon for manual control.
 - **Material Design 3**: Modern, clean, and adaptive UI.
-- **Native Integration**: Rigorous handling of permissions and hardware states.
 
 ## Technical Details
 
@@ -22,6 +25,8 @@ A Flutter utility app that allows users to toggle the device flashlight by shaki
   - `sensors_plus`: Accelerometer data
   - `flutter_background_service`: Persistent background execution
   - `permission_handler`: System permissions
+  - `vibration`: Haptic feedback
+  - `quick_settings`: Android Quick Settings integration
 
 ## Development
 

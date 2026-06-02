@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/models/app_settings.dart';
+import '../../data/models/shake_direction.dart';
 import 'base_providers.dart';
 
 final settingsProvider = NotifierProvider<SettingsNotifier, AppSettings>(() {
@@ -21,6 +22,18 @@ class SettingsNotifier extends Notifier<AppSettings> {
 
   Future<void> toggleService(bool value) async {
     final newState = state.copyWith(isServiceEnabled: value);
+    state = newState;
+    await ref.read(settingsRepositoryProvider).saveSettings(newState);
+  }
+
+  Future<void> toggleHaptic(bool value) async {
+    final newState = state.copyWith(isHapticEnabled: value);
+    state = newState;
+    await ref.read(settingsRepositoryProvider).saveSettings(newState);
+  }
+
+  Future<void> updateShakeDirection(ShakeDirection direction) async {
+    final newState = state.copyWith(shakeDirection: direction);
     state = newState;
     await ref.read(settingsRepositoryProvider).saveSettings(newState);
   }
