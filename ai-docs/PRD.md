@@ -38,15 +38,16 @@ ShakeLight App is a mobile utility developed in Flutter that allows users to tur
 
 ### 4.1 Core Shake & Background Features
 
-- **FR-1:** Shake Activation: The app shall use the accelerometer to detect a specific shaking pattern and toggle the flashlight state (On/Off).
-- **FR-2:** Background Execution: The app shall continue monitoring motion sensors when minimized or locked (requires Foreground Service with persistent notification on Android, and Background Modes on iOS).
+- **FR-1:** Shake Activation: The app shall use the accelerometer to detect a specific shaking pattern. The pattern must register at least 2 consecutive movements in the user-selected direction (Horizontal or Vertical) to toggle the flashlight state.
+- **FR-2:** Background Execution: The app shall continue monitoring motion sensors when minimized or locked. This feature must be **enabled by default**.
+- **FR-3:** Quick Settings Tile: The app shall integrate with the native OS Quick Settings (Notification Bar) allowing the user to toggle the background monitoring service outside the app.
 
 ### 4.2 User Interface & Controls
 
-- **FR-3:** Manual Control: The home screen shall provide a primary button to manually turn the flashlight on/off, reflecting the real-time state.
-- **FR-4:** Service Toggle: The home screen shall include a global switch to enable or disable the shake monitoring service.
-- **FR-5:** Sensitivity Control: The UI shall include a slider (0-100) allowing the user to adjust the G-force threshold required to trigger the light.
-- **FR-6:** State Persistence: The app shall save user preferences (sensitivity level, service toggle state) locally and restore them upon reopening.
+- **FR-4:** Manual Control: The central status icon on the home screen shall be interactive; tapping it will manually turn the flashlight on/off, reflecting the real-time state.
+- **FR-5:** Direction & Sensitivity: The UI shall include a slider (0-100) for G-force sensitivity and a selector (Horizontal/Vertical) for the required shake direction.
+- **FR-6:** Haptic Feedback: The UI shall include a toggle to enable/disable a slight vibration when the light state changes (enabled by default).
+- **FR-7:** State Persistence: The app shall save all user preferences (sensitivity, direction, haptic state, service toggle) locally and restore them upon reopening.
 
 ### 4.3 Setup & Permissions
 
